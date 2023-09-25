@@ -57,4 +57,4 @@ main
 .DS_Store
 a.out
 .idea
-cmake*
+cmake-build*

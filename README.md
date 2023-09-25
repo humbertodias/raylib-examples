@@ -3,7 +3,7 @@
 ```shell
 make all
 ```
-
+```
 Try to run the following executables:
 ./background-scrolling/build/main
 ./sound-loading/cmake-build-debug/main
@@ -12,3 +12,4 @@ Try to run the following executables:
 ./sprite-animation/build/main
 ./gamepad-input/build/main
 ./music-loading/build/main
+```

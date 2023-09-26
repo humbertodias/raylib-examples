@@ -1,16 +1,22 @@
 PROJECTS = $(shell ls -d */)
 CURRENT_DIR = $(shell pwd) 
 
-all:
+run:	compile
+	@echo "ESQ to close the game"
+	find . -name build -exec sh -c "cd {} ; ./main" \;
+
+compile:
 	for PROJECT in ${PROJECTS} ; do \
-		cd $$PROJECT && mkdir -p build && cd build && cmake .. && $(MAKE) && echo OK || break; \
+		$(MAKE) PROJECT=$$PROJECT build ; \
 		cd ${CURRENT_DIR} ; \
 	done
-	$(MAKE) usage
 
-usage:
-	@echo "Try to run the following executables:"
-	@find . -name main | grep build
+build:
+	cd $$PROJECT \
+	&& mkdir -p build \
+	&& cd build \
+	&& cmake -Wno-dev -DCMAKE_BUILD_TYPE=Debug .. \
+	&& $(MAKE) && echo OK || break;
 
 clean:
 	for PROJECT in ${PROJECTS} ; do \

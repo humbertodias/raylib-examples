@@ -38,7 +38,7 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - gamepad input");
 
-    Texture2D texPs3Pad = LoadTexture("assets/ps3.png");
+    Texture2D texPs3Pad = LoadTexture( "assets/ps3.png");
     Texture2D texXboxPad = LoadTexture("assets/xbox.png");
 
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second

@@ -1,13 +1,16 @@
 PROJECTS = $(shell ls -d */)
 CURRENT_DIR = $(shell pwd) 
 
-run:
+all:
 	@echo "ESQ to close the game"
 	for PROJECT in ${PROJECTS} ; do \
-		$(MAKE) PROJECT=$$PROJECT compile-cmake ; \
-		cd $$PROJECT/build && ./main ; \
+		$(MAKE) run PROJECT=$$PROJECT ; \
 		cd ${CURRENT_DIR} ; \
 	done
+
+run:
+	$(MAKE) PROJECT=$$PROJECT compile-cmake ; \
+	cd $$PROJECT/build && ./main ; \
 
 compile-gcc:
 	echo $$PROJECT
@@ -32,4 +35,15 @@ clean:
 	for PROJECT in ${PROJECTS} ; do \
 		cd $$PROJECT && rm -rf build main ; \
 		cd ${CURRENT_DIR} ; \
+	done
+
+ln:
+	for PROJECT in ${PROJECTS} ; do \
+		cd $$PROJECT && ln -s ../CMakeLists-common.txt CMakeLists.txt ; \
+		cd ${CURRENT_DIR} ; \
+	done
+
+unlink:
+	for PROJECT in ${PROJECTS} ; do \
+		rm -f $$PROJECT/CMakeLists.txt ; \
 	done
